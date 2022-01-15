@@ -1,0 +1,149 @@
+class Solution(object):
+    def intToRoman(self, num):
+        dic ={1:"I",5:"V",10:"X",50:"L",100:"C",500:"D",1000:"M",
+              4:"IV",9:"IX",40:"XL", 90:"XC", 400:"CD", 900:"CM"}
+        s1 = ""
+        l = [1,5,10,50,100,500,1000]
+        
+        while num != 0:
+            if num > 999:
+                s1 += "M"
+                num -= 1000
+            elif num in dic.keys():
+                s1 += dic[num]
+                num = 0
+            else:
+                for i in range(len(l)):
+                    if l[i] > num:
+                        lar = l[i]
+                        if i == 0:
+                            sma1 = 0
+                        else:
+                            sma1 = l[i-1]
+                        break
+                    if i == len(l)-1:
+                        lar = l[i]
+                        sma1 = l[i-1]
+                print("lar " , lar, "sma1 " ,sma1)
+                if lar == 10 or lar == 5:
+                    sma2 = 1
+                elif lar == 100 or lar == 50:
+                    sma2 = 10
+                elif lar == 1000 or lar == 500:
+                    sma2 = 100
+                print("lar ",lar, "sma2 " , sma2)
+                
+                test = lar -sma1
+                test2 = lar -sma2
+                
+                if test < test2 and num - test2 >= 0:
+                    x = lar - sma2
+                    sma = sma2
+                elif num - test >= 0:
+                    x = lar - sma1
+                    sma = sma1
+                elif sma1 == sma2 and sma1 in dic.keys():
+                    x = sma1
+                else:
+                    x = 1
+                    sma = 0
+                
+                if x in dic.keys():
+                    s1 += dic[x]
+                    num -= x
+                    print(num)
+                else:
+                    s1 += dic[sma]
+                    num -= sma
+
+
+        return s1
+
+
+            
+    """
+        :type num: int
+        :rtype: str
+        
+        num = 44
+        s = ""
+        
+        check if num is equal to zero, if not conutine
+        
+        check lar  = 50
+        how will it check lar?
+        sees if lar > 44
+        if there's a list form smallest to biggest the the first time the value 
+        is greater than num then the loop ends
+        l = [1,5,10,50,100,500,1000]
+        for g in l:
+            if g>num:
+                lar = g
+                break
+        
+        check sma = 10
+        
+        if sma is gvien a value, subtracts lar from sma 
+        x = 50 -10 // 40
+        check if x is in the dic
+        if yes
+            s += dic[x]
+            num -= x
+        if no
+            s += dic[sma]
+            num -= sma
+        num = 4
+        leaves the loop
+        
+        check if num is equal to zero, if not conutine
+        num = 4
+        s = "XL"
+        check lar = 5
+        check sma = 1
+        x = 5-1
+        check if x is in dic
+        if yes
+            s += dic[x]
+            num -= x
+        if no
+            s += dic[sma]
+            num -= x
+        
+        num = 0   
+        check if num is equal to zero
+        it is so now the loop will end
+        
+        return s
+        
+        
+        
+        
+        
+        
+        
+        num = 19
+        s = "X"
+        subtract 10 from num
+        num = 9
+        check and see 10(X)-1(I)
+        sub 9
+        s = "XIX"
+        num = 0
+        
+        
+        
+        
+        s = "XV"
+        sub 5 
+        num = 2
+        s = "XVI"
+        sub 1
+        num = 1
+        s = "XVII"
+        sub 1
+        num = 0
+        
+        return s
+        
+        """
+        
