@@ -24,14 +24,13 @@ class Solution(object):
                     if i == len(l)-1:
                         lar = l[i]
                         sma1 = l[i-1]
-                print("lar " , lar, "sma1 " ,sma1)
+                
                 if lar == 10 or lar == 5:
                     sma2 = 1
                 elif lar == 100 or lar == 50:
                     sma2 = 10
                 elif lar == 1000 or lar == 500:
-                    sma2 = 100
-                print("lar ",lar, "sma2 " , sma2)
+                    sma2 = 100                
                 
                 test = lar -sma1
                 test2 = lar -sma2
@@ -51,7 +50,7 @@ class Solution(object):
                 if x in dic.keys():
                     s1 += dic[x]
                     num -= x
-                    print(num)
+                    
                 else:
                     s1 += dic[sma]
                     num -= sma
