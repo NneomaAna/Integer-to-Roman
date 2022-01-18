@@ -3,61 +3,19 @@ class Solution(object):
         dic ={1:"I",5:"V",10:"X",50:"L",100:"C",500:"D",1000:"M",
               4:"IV",9:"IX",40:"XL", 90:"XC", 400:"CD", 900:"CM"}
         s1 = ""
-        l = [1,5,10,50,100,500,1000]
-        
+        l = [1,4, 5,9, 10,40, 50,90, 100, 400, 500,900, 1000]
+        assert (num > 0),"Number should be greater than zero!"
         while num != 0:
             if num > 999:
                 s1 += "M"
-                num -= 1000
-            elif num in dic.keys():
-                s1 += dic[num]
-                num = 0
+                num -= 1000 
             else:
                 for i in range(len(l)):
                     if l[i] > num:
-                        lar = l[i]
-                        if i == 0:
-                            sma1 = 0
-                        else:
-                            sma1 = l[i-1]
-                        break
-                    if i == len(l)-1:
-                        lar = l[i]
-                        sma1 = l[i-1]
-                
-                if lar == 10 or lar == 5:
-                    sma2 = 1
-                elif lar == 100 or lar == 50:
-                    sma2 = 10
-                elif lar == 1000 or lar == 500:
-                    sma2 = 100                
-                
-                test = lar -sma1
-                test2 = lar -sma2
-                
-                if test < test2 and num - test2 >= 0:
-                    x = lar - sma2
-                    sma = sma2
-                elif num - test >= 0:
-                    x = lar - sma1
-                    sma = sma1
-                elif sma1 == sma2 and sma1 in dic.keys():
-                    x = sma1
-                else:
-                    x = 1
-                    sma = 0
-                
-                if x in dic.keys():
-                    s1 += dic[x]
-                    num -= x
-                    
-                else:
-                    s1 += dic[sma]
-                    num -= sma
-
-
+                       num = num - l[i-1]
+                       s1 += dic[l[i-1]]
+                       break;
         return s1
-
 
             
     """
